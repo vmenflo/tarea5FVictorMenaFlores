@@ -12,13 +12,15 @@ import java.util.Random;
  * @author victor
  */
 public class SopaLetras {
+
     //Atributos
     private char[][] sopaLetras;
-    
+
     //Constructor
     public SopaLetras(int numFilas, int numColumnas) {
-        this.sopaLetras=rellenarMatriz(numFilas, numColumnas);
+        this.sopaLetras = rellenarMatriz(numFilas, numColumnas);
     }
+
     //GETTER AND SETTER
     public char[][] getSopaLetras() {
         return sopaLetras;
@@ -27,9 +29,8 @@ public class SopaLetras {
     public void setSopaLetras(char[][] sopaLetras) {
         this.sopaLetras = sopaLetras;
     }
-    
-    //TO STRING
 
+    //TO STRING
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -38,9 +39,8 @@ public class SopaLetras {
         sb.append('}');
         return sb.toString();
     }
-    
-    //Equals and hash
 
+    //Equals and hash
     @Override
     public int hashCode() {
         int hash = 3;
@@ -62,80 +62,80 @@ public class SopaLetras {
         final SopaLetras other = (SopaLetras) obj;
         return Arrays.deepEquals(this.sopaLetras, other.sopaLetras);
     }
-    
-   //Generar matriz
-    
-    public char[][] rellenarMatriz(int filas, int columnas){
+
+    //Generar matriz
+    public char[][] rellenarMatriz(int filas, int columnas) {
         char[][] matriz = new char[filas][columnas];
         //Objeto random
         Random r = new Random();
         //Bucle para rellenar
-        for(int i=0;i<filas;i++){
-            for(int j=0; j<columnas;j++){
-                int letra= r.nextInt(65,91);
-                
-                matriz[i][j]=(char)letra;
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                int letra = r.nextInt(65, 91);
+
+                matriz[i][j] = (char) letra;
             }
         }
         return matriz;
     }
-    
+
     //Metodo que recibe matriz y muestra forma tabulada
     public void mostrarMatriz() {
         for (char[] sopaLetra : sopaLetras) {
             for (int j = 0; j < sopaLetra.length; j++) {
-                System.out.print(sopaLetra[j] + "  ");  
+                System.out.print(sopaLetra[j] + "  ");
             }
             System.out.println();
         }
     }
-    
+
     //Método colocar palabra horizontal
-    public void palabraHorizontal(int fila, int columna, String palabra){
-        char[] letra = new char[palabra.length()];
-        int c=0;
-        int indiceColumna=columna;
-        
-            for(int j=0;j<palabra.length();j++){
-                if(j<=sopaLetras[fila].length){
-                    letra[c]=(char)palabra.charAt(c);
-                    sopaLetras[fila][indiceColumna]=letra[c];
-                    c++;
-                    indiceColumna++;
-                }
+    public void palabraHorizontal(int fila, int columna, String palabra) {
+        char[] letra = new char[palabra.length()];//Creo una Array del tamaño palabra
+        int c = 0;//Controlo la posicion del indice de la array
+        int indiceColumna = columna; //Se moverá por la matriz
+        //Bucle para rellenar la matriz con la palabra
+        for (int j = 0; j < palabra.length(); j++) {//Recorra el tamaño de la palabra
+            if (j <= sopaLetras[fila].length) {//Rellene mientras no se salga de la matriz
+                letra[c] = (char) palabra.charAt(c);//Convierto la letra en char
+                sopaLetras[fila][indiceColumna] = letra[c];
+                c++;
+                indiceColumna++;
             }
+        }
     }
-    
+
     //Método colocar palabra vertical
-    public void palabraVertical(int fila, int columna, String palabra){
+    public void palabraVertical(int fila, int columna, String palabra) {
         char[] letra = new char[palabra.length()];
-        int c=0;
-        int indiceFila=fila;
+        int c = 0;
+        int indiceFila = fila;//Uso para moverme por la misma columna
         
-            for(int j=0;j<palabra.length();j++){
-                if(j<=sopaLetras[fila].length){
-                    letra[c]=(char)palabra.charAt(c);
-                    sopaLetras[indiceFila][columna]=letra[c];
-                    c++;
-                    indiceFila++;
-                }
+        for (int j = 0; j < palabra.length(); j++) {
+            if (j <= sopaLetras[fila].length) {
+                letra[c] = (char) palabra.charAt(c);
+                sopaLetras[indiceFila][columna] = letra[c];
+                c++;
+                indiceFila++;
             }
+        }
     }
+
     //Método colocar palabra inversa
-    public void palabraInversa(int fila, int columna, String palabra){
+    public void palabraInversa(int fila, int columna, String palabra) {
         char[] letra = new char[palabra.length()];
-        int c=0;
-        int indiceColumna=columna;
-        int termina = palabra.length()-1;
-        
-            for(int j=0;j<palabra.length();j++){
-                if(j<=sopaLetras[fila].length){
-                    int cInversa=termina-c;
-                    letra[c]=(char)palabra.charAt(cInversa);
-                    sopaLetras[fila][indiceColumna]=letra[c];
-                    c++;
-                    indiceColumna++;
-                }
+        int c = 0;
+        int indiceColumna = columna;//Por donde se va a mover
+        int termina = palabra.length() - 1;//Obtengo la posicion final
+
+        for (int j = 0; j < palabra.length(); j++) {
+            if (j <= sopaLetras[fila].length) {
+                int cInversa = termina - c;//Actualizo la posicion
+                letra[c] = (char) palabra.charAt(cInversa);
+                sopaLetras[fila][indiceColumna] = letra[c];
+                c++;
+                indiceColumna++;
             }
+        }
     }
 }
