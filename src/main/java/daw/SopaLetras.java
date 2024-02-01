@@ -93,9 +93,49 @@ public class SopaLetras {
     //Método colocar palabra horizontal
     public void palabraHorizontal(int fila, int columna, String palabra){
         char[] letra = new char[palabra.length()];
-        int c=columna;
-        for()
-       
+        int c=0;
+        int indiceColumna=columna;
+        
+            for(int j=0;j<palabra.length();j++){
+                if(j<=sopaLetras[fila].length){
+                    letra[c]=(char)palabra.charAt(c);
+                    sopaLetras[fila][indiceColumna]=letra[c];
+                    c++;
+                    indiceColumna++;
+                }
+            }
     }
     
+    //Método colocar palabra vertical
+    public void palabraVertical(int fila, int columna, String palabra){
+        char[] letra = new char[palabra.length()];
+        int c=0;
+        int indiceFila=fila;
+        
+            for(int j=0;j<palabra.length();j++){
+                if(j<=sopaLetras[fila].length){
+                    letra[c]=(char)palabra.charAt(c);
+                    sopaLetras[indiceFila][columna]=letra[c];
+                    c++;
+                    indiceFila++;
+                }
+            }
+    }
+    //Método colocar palabra inversa
+    public void palabraInversa(int fila, int columna, String palabra){
+        char[] letra = new char[palabra.length()];
+        int c=0;
+        int indiceColumna=columna;
+        int termina = palabra.length()-1;
+        
+            for(int j=0;j<palabra.length();j++){
+                if(j<=sopaLetras[fila].length){
+                    int cInversa=termina-c;
+                    letra[c]=(char)palabra.charAt(cInversa);
+                    sopaLetras[fila][indiceColumna]=letra[c];
+                    c++;
+                    indiceColumna++;
+                }
+            }
+    }
 }

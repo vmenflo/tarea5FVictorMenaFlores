@@ -12,11 +12,20 @@ import javax.swing.JOptionPane;
  */
 public class Main {
     public static void main(String[] args) {
-        SopaLetras sopa = new SopaLetras(5,5);
+        SopaLetras sopa = new SopaLetras(10,10);
         
         sopa.mostrarMatriz();
-        String palabra = JOptionPane.showInputDialog("Cual es la palabra");
-        sopa.palabraHorizontal(0, 0, palabra);
+        sopa.palabraHorizontal(0, 0, "hola");
+        sopa.palabraHorizontal(3, 2, "gato");
+        sopa.palabraHorizontal(5, 4, "copazo");
+        sopa.palabraHorizontal(7, 1, "sabado");
+        sopa.palabraVertical(1, 0, "movil");
+        sopa.palabraVertical(0, 9, "cell");
+        sopa.palabraVertical(0, 8, "bus");
+        sopa.palabraInversa(8, 0, "adios");
+        sopa.palabraInversa(6, 1, "ordenador");
+        
+        System.out.println("---------");
         sopa.mostrarMatriz();
     }
 }
